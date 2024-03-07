@@ -1,6 +1,6 @@
-import { Application, Sprite } from 'pixi.js'
+import { Application, Sprite, Loader } from 'pixi.js'
 
-const app = new Application<HTMLCanvasElement>({
+const app = new Application({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
 	resolution: window.devicePixelRatio || 1,
 	autoDensity: true,
@@ -9,11 +9,22 @@ const app = new Application<HTMLCanvasElement>({
 	height: 480
 });
 
-const clampy: Sprite = Sprite.from("clampy.png");
+Loader.shared.add({url: "./dino.png", name: "myDino"});
+Loader.shared.add({url: "./clampy.png", name: "Clampy"})
 
-clampy.anchor.set(0.5);
+Loader.shared.onComplete.add(()=>{
 
-clampy.x = 300;
-clampy.y = 300;
+	const clampy: Sprite = Sprite.from("myDino");
 
-app.stage.addChild(clampy);
+	console.log("Hola Mundo!!", clampy.width, clampy.height);
+
+	//clampy.anchor.set(0);
+
+	clampy.x = 0;
+	clampy.y = 0;
+
+	app.stage.addChild(clampy);
+
+});
+
+Loader.shared.load();
