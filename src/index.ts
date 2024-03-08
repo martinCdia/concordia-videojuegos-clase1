@@ -1,4 +1,4 @@
-import { Application, Sprite, Loader } from 'pixi.js'
+import { Application, Sprite, Loader, Container } from 'pixi.js'
 
 // Crea  una instancia de PIXI.Application y la asigna a la variable app
 const app = new Application({	
@@ -38,23 +38,33 @@ window.addEventListener("resize", ()=>{
 window.dispatchEvent(new Event("resize")); //Llama al evento "resize" para centrar el canvas en carga
 
 Loader.shared.add({url: "./dino.png", name: "myDino"}); // Cargamos imagen del dinosaurio
+Loader.shared.add({url: "./dinohat.png", name: "Hat"}); // Cargamos imagen del sombrero
 
 // Cuando todo este listo...
 Loader.shared.onComplete.add(()=>{ 
 
+	/* CREAMOS LOS OBJETOS */
 	const dino: Sprite = Sprite.from("myDino"); // Crea un sprite a partir del recurso cargado con nombre myDino
+	const hat: Sprite = Sprite.from("Hat");
+	
+	/* SETEAR LOS OBJETOS */
+	hat.scale.set(0.8); // Escalar el sombrero como el dino pero mas pequeño
+	hat.position.set(90,-190); // Posición del sombrero en relación al dino
+	
+	/* CREAR EL PADRE */
+	const dinoWithHat: Container = new Container(); // Creo un contenedor para meterlo todo junto
+	/* AGREGAR EL PADRE*/
+	dinoWithHat.addChild(dino);
+	dinoWithHat.addChild(hat);
 
-	// Posición dentro del lienzo de dino
-	dino.x = 100;
-	dino.y = 100;
-
-	// Escala del dino dentro del lienzo
-	dino.scale.x = 0.5;
-	dino.scale.y = 0.5;
-
-
-	app.stage.addChild(dino);
-
+	/* MODIFICAR EL PADRE CUANDO SEA NECESARIO */
+	dinoWithHat.scale.set(0.5);
+	dinoWithHat.x = 200;
+	dinoWithHat.y = 300;
+	
+	/* AGREGAR EL PADRE A PANTALLA */
+	app.stage.addChild(dinoWithHat); // Lo añadimos a la escena principal
+	
 });
 
 Loader.shared.load();
