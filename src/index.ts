@@ -1,6 +1,7 @@
 import { Application, Sprite, Loader } from 'pixi.js'
 
-const app = new Application({
+// Crea  una instancia de PIXI.Application y la asigna a la variable app
+const app = new Application({	
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
 	resolution: window.devicePixelRatio || 1,
 	autoDensity: true,
@@ -9,7 +10,7 @@ const app = new Application({
 	height: 730
 });
 
-// Cada vez que cambiemos el tamaño de pantalla
+// Cada vez que cambiemos el tamaño de pantalla , llamaremos a la función resize para adaptarnos al nuevo tamaño
 window.addEventListener("resize", ()=>{
 	// app.screen.width; => tamaño ancho que queremos que siempre sea el juego 
 	// app.screen.height; => tamaño alto que queremos que siempre sea el juego 
@@ -19,34 +20,31 @@ window.addEventListener("resize", ()=>{
 	const scaleY = window.innerHeight / app.screen.height;
 	const scale = Math.min(scaleX, scaleY); // Obtengo la menor de las dos escalas
 
-	const gameWidth = Math.round(app.screen.width * scale);
-	const gameHeight = Math.round(app.screen.height * scale);
+	const gameWidth = Math.round(app.screen.width * scale); //  Escala para adaptar al ancho de la ventana del navegador
+	const gameHeight = Math.round(app.screen.height * scale); //  Escala para adaptar al alto de la ventana del navegador 	
 
-	const marginHorizontal = Math.floor((window.innerWidth - gameWidth) / 2);
-	const marginVertical = Math.floor((window.innerHeight - gameHeight) / 2);
+	const marginHorizontal = Math.floor((window.innerWidth - gameWidth) / 2); //  Margen izquierda o derecha para centrar Horizontal
+	const marginVertical = Math.floor((window.innerHeight - gameHeight) / 2); //  Margen superior o inferior para centrar verticalmente
 
-	app.view.style.width = gameWidth + "px";
-	app.view.style.height = gameHeight + "px";
+	app.view.style.width = gameWidth + "px"; //  Le doy el tamaño al div del canvas
+	app.view.style.height = gameHeight + "px"; //  Le doy los pixeles al canvas para que ocupe todo el div
 
-	app.view.style.marginLeft = marginHorizontal + "px";
-	app.view.style.marginRight = marginHorizontal + "px";
-	app.view.style.marginTop = marginVertical + "px";
-	app.view.style.marginBottom = marginVertical + "px";
+	app.view.style.marginLeft = marginHorizontal + "px";  // Posiciono horizontalmente en el centro 
+	app.view.style.marginRight = marginHorizontal + "px"; 
+	app.view.style.marginTop = marginVertical + "px"; //  Posiciono verticalmente en el centro
+	app.view.style.marginBottom = marginVertical + "px"; 
 });
-window.dispatchEvent(new Event("resize"));
 
-Loader.shared.add({url: "./dino.png", name: "myDino"});
-//Loader.shared.add({url: "./clampy.png", name: "Clampy"})
+window.dispatchEvent(new Event("resize")); //Llama al evento "resize" para centrar el canvas en carga
 
-Loader.shared.onComplete.add(()=>{
+Loader.shared.add({url: "./dino.png", name: "myDino"}); // Cargamos imagen del dinosaurio
 
-	const dino: Sprite = Sprite.from("myDino");
+// Cuando todo este listo...
+Loader.shared.onComplete.add(()=>{ 
 
-	//console.log("Hola Mundo!!", clampy.width, clampy.height);
+	const dino: Sprite = Sprite.from("myDino"); // Crea un sprite a partir del recurso cargado con nombre myDino
 
-	//clampy.anchor.set(0);
-
-	// Posicion dentro del lienzo de dino
+	// Posición dentro del lienzo de dino
 	dino.x = 100;
 	dino.y = 100;
 
