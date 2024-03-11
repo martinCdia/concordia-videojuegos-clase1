@@ -1,6 +1,7 @@
 import { Application, Loader } from 'pixi.js'
 import { assets } from './assets';
-import { Scene } from './Scene';
+//import { Scene } from './scene/Scene';
+import { UIDemo } from './scene/UIDemo';
 
 /*
 	Crea  una instancia de PIXI.Application y la asigna a la variable app.
@@ -55,9 +56,14 @@ Loader.shared.add(assets);
 	Decimos al Loader que cuando termine de cargar los assets, cree una instancia de
  	nuestro objeto scene y lo ponga en pantalla 
 */
-Loader.shared.onComplete.add(()=>{ 
+/*Loader.shared.onComplete.add(()=>{ 
 	const myScene = new Scene()
 	app.stage.addChild(myScene)
+});*/
+
+Loader.shared.onComplete.add(() => {
+	const myUIDemo = new UIDemo();
+	app.stage.addChild(myUIDemo);
 });
 
 

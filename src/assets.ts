@@ -15,4 +15,13 @@ export const assets = [
     {url: "./caballero/1_atk_11.png", name: "knightAttak11"},
 
     {url: "./ui/metalPanel.png", name: "Panel"},
+
+    {url: "./uidemo/windows.png", name: "Windows"},
+    {url: "./uidemo/btn_mouse_red.png", name: "ButtonMouse"},
+    {url: "./uidemo/btn_mouse_grey.png", name: "ButtonMouseDown"},
+    {url: "./uidemo/btn_mouse_orange.png", name: "ButtonMouseOver"},
+    {url: "./uidemo/btn_touch_red.png", name: "ButtonTouch"},
+    {url: "./uidemo/btn_touch_grey.png", name: "ButtonTouchStart"},
+    {url: "./uidemo/btn_point_red.png", name: "ButtonPointer"},
+    {url: "./uidemo/btn_point_grey.png", name: "ButtonPointerDown"}
 ];
