@@ -2,6 +2,7 @@ import { Application, Loader } from 'pixi.js'
 import { assets } from './assets';
 //import { Scene } from './scene/Scene';
 import { UIDemo } from './scene/UIDemo';
+import { Keyboard } from './utils/Keyboard';
 
 /*
 	Crea  una instancia de PIXI.Application y la asigna a la variable app.
@@ -16,6 +17,10 @@ const app = new Application({
 	height: 790
 });
 
+/*
+	Inicializar el manejo del teclado
+*/
+Keyboard.initialize(); 
 
 /* 
 	Cada vez que cambiemos el tamaño de pantalla , llamaremos a la función resize 
