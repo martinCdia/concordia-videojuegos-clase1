@@ -23,5 +23,15 @@ export const assets = [
     {url: "./uidemo/btn_touch_red.png", name: "ButtonTouch"},
     {url: "./uidemo/btn_touch_grey.png", name: "ButtonTouchStart"},
     {url: "./uidemo/btn_point_red.png", name: "ButtonPointer"},
-    {url: "./uidemo/btn_point_grey.png", name: "ButtonPointerDown"}
+    {url: "./uidemo/btn_point_grey.png", name: "ButtonPointerDown"},
+
+    {url: "./uidemo/btn_W_red.png", name: "ButtonWRed"},
+    {url: "./uidemo/btn_A_red.png", name: "ButtonARed"},
+    {url: "./uidemo/btn_S_red.png", name: "ButtonSRed"},
+    {url: "./uidemo/btn_D_red.png", name: "ButtonDRed"},
+    {url: "./uidemo/btn_W_grey.png", name: "ButtonWGrey"},
+    {url: "./uidemo/btn_A_grey.png", name: "ButtonAGrey"},
+    {url: "./uidemo/btn_S_grey.png", name: "ButtonSGrey"},
+    {url: "./uidemo/btn_D_grey.png", name: "ButtonDGrey"},
+
 ];

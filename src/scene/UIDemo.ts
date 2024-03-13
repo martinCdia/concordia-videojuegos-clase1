@@ -7,6 +7,16 @@ export class UIDemo extends Container {
     private buttonMouse: Buttons;
     private buttonTouch: Sprite;
     private buttonPointer: Sprite;
+
+    private keyWGrey: Sprite;
+    //private keyWRed: Sprite;
+    private keyAGrey: Sprite;
+    //private keyARed: Sprite;
+    private keySGrey: Sprite;
+    //private keySRed: Sprite;
+    private keyDGrey: Sprite;
+    //private keyDRed: Sprite;
+
     private waiting: Text;
 
     constructor() {
@@ -58,19 +68,74 @@ export class UIDemo extends Container {
         );
         this.waiting.anchor.set(0.5);
         this.waiting.x = myWindows.width / 2;
-        this.waiting.y = this.buttonPointer.y + 150;
+        this.waiting.y = this.buttonPointer.y + 220;
         dialog.addChild(this.waiting);
 
-        Keyboard.down.on("KeyB", this.onKeyB, this);
-        Keyboard.up.on("KeyB", this.onKeyBUp, this); 
+        this.keyWGrey = Sprite.from("ButtonWGrey");
+        this.keyWGrey.anchor.set(0.5);
+        this.keyWGrey.x = myWindows.width / 2;
+        this.keyWGrey.y = this.buttonPointer.y + 75;
+        dialog.addChild(this.keyWGrey)
+
+        this.keySGrey = Sprite.from("ButtonSGrey");
+        this.keySGrey.anchor.set(0.5);
+        this.keySGrey.x = myWindows.width / 2;
+        this.keySGrey.y = this.keyWGrey.y + 75;
+        dialog.addChild(this.keySGrey)
+
+        this.keyAGrey = Sprite.from("ButtonAGrey");
+        this.keyAGrey.anchor.set(0.5);
+        this.keyAGrey.x = myWindows.width / 2 - 75;
+        this.keyAGrey.y = this.keyWGrey.y + 75;
+        dialog.addChild(this.keyAGrey)
+
+        this.keyDGrey = Sprite.from("ButtonDGrey");
+        this.keyDGrey.anchor.set(0.5);
+        this.keyDGrey.x = myWindows.width / 2 + 75;
+        this.keyDGrey.y = this.keyWGrey.y + 75;
+        dialog.addChild(this.keyDGrey)
+
+        Keyboard.down.on("KeyW", this.onKeyW, this);
+        Keyboard.up.on("KeyW", this.onKeyWUp, this); 
+        Keyboard.down.on("KeyA", this.onKeyA, this);
+        Keyboard.up.on("KeyA", this.onKeyAUp, this); 
+        Keyboard.down.on("KeyS", this.onKeyS, this);
+        Keyboard.up.on("KeyS", this.onKeySUp, this); 
+        Keyboard.down.on("KeyD", this.onKeyD, this);
+        Keyboard.up.on("KeyD", this.onKeyDUp, this); 
+
     };
 
-    private onKeyB() {
-        console.log("Aprete la B", this)
+    private onKeyW() {
+        this.keyWGrey.texture = Texture.from("ButtonWRed");
     }
 
-    private onKeyBUp() {
-        console.log("Solte la B", this)
+    private onKeyWUp() {
+        this.keyWGrey.texture = Texture.from("ButtonWGrey");
+    }
+
+    private onKeyA() {
+        this.keyAGrey.texture = Texture.from("ButtonARed");
+    }
+
+    private onKeyAUp() {
+        this.keyAGrey.texture = Texture.from("ButtonAGrey");
+    }
+
+    private onKeyS() {
+        this.keySGrey.texture = Texture.from("ButtonSRed");
+    }
+
+    private onKeySUp() {
+        this.keySGrey.texture = Texture.from("ButtonSGrey");
+    }
+
+    private onKeyD() {
+        this.keyDGrey.texture = Texture.from("ButtonDRed");
+    }
+
+    private onKeyDUp() {
+        this.keyDGrey.texture = Texture.from("ButtonDGrey");
     }
 
     private onButtonClick() {
