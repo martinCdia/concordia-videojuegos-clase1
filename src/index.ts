@@ -1,8 +1,9 @@
-import { Application, Loader } from 'pixi.js'
+import { Application, Loader, Ticker } from 'pixi.js'
 import { assets } from './assets';
 //import { Scene } from './scene/Scene';
-import { UIDemo } from './scene/UIDemo';
+//import { UIDemo } from './scene/UIDemo';
 import { Keyboard } from './utils/Keyboard';
+import { TickerScene } from './scene/TickerScene';
 
 /*
 	Crea  una instancia de PIXI.Application y la asigna a la variable app.
@@ -66,11 +67,18 @@ Loader.shared.add(assets);
 	app.stage.addChild(myScene)
 });*/
 
-Loader.shared.onComplete.add(() => {
+/*Loader.shared.onComplete.add(() => {
 	const myUIDemo = new UIDemo();
 	app.stage.addChild(myUIDemo);
-});
+});*/
 
+Loader.shared.onComplete.add(() => {
+	const myTickerScene = new TickerScene();
+	app.stage.addChild(myTickerScene);
+	Ticker.shared.add(function(deltaFrame){
+		myTickerScene.update(Ticker.shared.deltaMS, deltaFrame);
+	})
+});
 
 /*
 	Le decimos que empiece a cargar los assets
